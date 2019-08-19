@@ -4,6 +4,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+const keys = require("./config/keys");
 
 
 /*routes*/
@@ -15,6 +17,10 @@ const categoryRoutes = require("./routes/category");
 
 
 /*stuff*/
+mongoose.connect(keys.MONGO_URI, {useNewUrlParser: true})
+    .then(() => console.log("mongo connected"))
+    .catch( err => console.log(err) );
+
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
