@@ -7,7 +7,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const keys = require("./config/keys");
-
+const errorHandler = require("./utils/errorHandler");
 
 /*routes*/
 const authRoutes = require("./routes/auth");
@@ -25,6 +25,7 @@ mongoose.connect(keys.MONGO_URI, {useNewUrlParser: true})
 app.use(passport.initialize());
 require("./middleware/passport")(passport);
 app.use(morgan("dev"));
+app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors());
