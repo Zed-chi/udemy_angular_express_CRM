@@ -2,6 +2,7 @@ const UserModel = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
+const errorHandler = require("../utils/errorHandler");
 
 
 module.exports.login = async function (req,res){
@@ -44,6 +45,7 @@ module.exports.register = async function (req,res){
             res.status(201).json({message:"user created"});
         } catch(err){
             console.log(err);
+            errorHandler(res, err);
         }        
     }
 }
