@@ -23,7 +23,7 @@ module.exports.login = async function (req,res){
         }
     }
     else {
-        res.status(404).json({"messsage":"user not found"});
+        res.status(404).json({"message":"user not found"});
     }
 }
 
